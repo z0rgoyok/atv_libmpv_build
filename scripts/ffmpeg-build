@@ -4,14 +4,12 @@ set -e
 FFMPEG_OPTIONS="${COMMON_OPTIONS%% *} \
 		--enable-cross-compile \
 		--disable-lzma \
-		--disable-securetransport \
-		--disable-indev=avfoundation \
 		--disable-sdl2 \
 		--disable-debug \
 		--disable-programs \
 		--disable-doc \
 		--enable-pic \
-		--enable-shared"
+		--disable-shared --enable-static --enable-gpl --enable-videotoolbox --disable-indev=avfoundation"
 
 if [[ ! `which gas-preprocessor.pl` ]]; then
 	curl -L https://github.com/libav/gas-preprocessor/raw/master/gas-preprocessor.pl -o /usr/local/bin/gas-preprocessor.pl \
