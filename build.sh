@@ -50,14 +50,14 @@ mkdir -p $LIB
 for ARCH in $ARCHS; do
     if [[ $ARCH = "arm64" ]]; then
         HOSTFLAG="aarch64"
-		export SDKPATH="$(xcodebuild -sdk iphoneos -version Path)"
-		ACFLAGS="-arch $ARCH -isysroot $SDKPATH -mios-version-min=$DEPLOYMENT_TARGET"
-		ALDFLAGS="-arch $ARCH -isysroot $SDKPATH -Wl,-ios_version_min,$DEPLOYMENT_TARGET -lbz2"
+		export SDKPATH="$(xcodebuild -sdk appletvos -version Path)"
+		ACFLAGS="-arch $ARCH -isysroot $SDKPATH -mtvos-version-min=$DEPLOYMENT_TARGET"
+		ALDFLAGS="-arch $ARCH -isysroot $SDKPATH -Wl,-tvos_version_min,$DEPLOYMENT_TARGET -lbz2"
 	elif [[ $ARCH = "x86_64" ]]; then
         HOSTFLAG="x86_64"
-		export SDKPATH="$(xcodebuild -sdk iphonesimulator -version Path)"
-		ACFLAGS="-arch $ARCH -isysroot $SDKPATH -mios-simulator-version-min=$DEPLOYMENT_TARGET"
-		ALDFLAGS="-arch $ARCH -isysroot $SDKPATH -Wl,-ios_simulator_version_min,$DEPLOYMENT_TARGET -lbz2"
+		export SDKPATH="$(xcodebuild -sdk appletvsimulator -version Path)"
+		ACFLAGS="-arch $ARCH -isysroot $SDKPATH -mtvos-simulator-version-min=$DEPLOYMENT_TARGET"
+		ALDFLAGS="-arch $ARCH -isysroot $SDKPATH -Wl,-tvos_simulator_version_min,$DEPLOYMENT_TARGET -lbz2"
 	else
         echo "Unhandled architecture option"
         exit 1

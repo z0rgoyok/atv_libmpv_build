@@ -5,6 +5,7 @@ FFMPEG_OPTIONS="${COMMON_OPTIONS%% *} \
 		--enable-cross-compile \
 		--disable-lzma \
 		--disable-securetransport \
+		--disable-indev=avfoundation \
 		--disable-sdl2 \
 		--disable-debug \
 		--disable-programs \
@@ -19,9 +20,9 @@ fi
 
 if [[ "$ARCH" = "arm64" ]]; then
 	EXPORT="GASPP_FIX_XCODE5=1"
-	PLATFORM="iPhoneOS"
+	PLATFORM="AppleTVOS"
 elif [[ "$ARCH" = "x86_64" ]]; then
-	PLATFORM="iPhoneSimulator"
+	PLATFORM="AppleTVSimulator"
 fi
 
 XCRUN_SDK=`echo $PLATFORM | tr '[:upper:]' '[:lower:]'`
